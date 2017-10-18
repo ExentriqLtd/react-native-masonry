@@ -115,6 +115,7 @@ export default class Masonry extends Component {
          contentContainerStyle={styles.masonry__container}
          dataSource={this.state.dataSource}
          enableEmptySections
+         scrollEventThrottle={16}
          onScroll={this.props.onScroll}
          renderRow={(data, sectionId, rowID) =>
            <Column
