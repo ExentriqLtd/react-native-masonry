@@ -25,7 +25,8 @@ export default class Masonry extends Component {
     sorted: PropTypes.bool,
     imageContainerStyle: PropTypes.object,
     customImageComponent: PropTypes.func,
-    customImageProps: PropTypes.object
+    customImageProps: PropTypes.object,
+    onScroll: PropTypes.func,
   };
 
   static defaultProps = {
@@ -114,6 +115,7 @@ export default class Masonry extends Component {
          contentContainerStyle={styles.masonry__container}
          dataSource={this.state.dataSource}
          enableEmptySections
+         onScroll={this.props.onScroll}
          renderRow={(data, sectionId, rowID) =>
            <Column
              data={data}
@@ -138,7 +140,7 @@ export function _insertIntoColumn (resolvedBrick, dataSet, sorted) {
 
   if (column) {
     // Append to existing "row"/"column"
-    const bricks = [...column, resolvedBrick];
+    let bricks = [...column, resolvedBrick];
     if (sorted) {
       // Sort bricks according to the index of their original array position
       bricks = bricks.sort((a, b) => (a.index < b.index) ? -1 : 1);
