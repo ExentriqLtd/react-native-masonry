@@ -26,6 +26,7 @@ export default class Masonry extends Component {
     imageContainerStyle: PropTypes.object,
     customImageComponent: PropTypes.func,
     customImageProps: PropTypes.object,
+    onScroll: PropTypes.func,
     spacing: PropTypes.number
   };
 
@@ -116,6 +117,7 @@ export default class Masonry extends Component {
          contentContainerStyle={styles.masonry__container}
          dataSource={this.state.dataSource}
          enableEmptySections
+         onScroll={this.props.onScroll}
          renderRow={(data, sectionId, rowID) =>
            <Column
              data={data}
